@@ -2,8 +2,8 @@ A personal number theory library.
 - nu11us, MIT License
 
 
-# Current Features
-+ Factorial
+## Current Features
++ Factorials
 + Logarithms
 + Combinations
 + Permutations
@@ -11,5 +11,5 @@ A personal number theory library.
 + String Alphanumeric Value
 + Collatz Conjecture Cycle Count
 
-# To be added
+## To be added
 + Sieve of Eratosthenes
