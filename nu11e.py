@@ -18,24 +18,24 @@ def factorial(x):
 
 def log(a, n):
     if n%a == 0:
-        return 1 + log(a, n/a)
+        return 1 + log(a, n//a)
     else:
         return 0 
 
 def nCr(n,r):
-    return factorial(n)/(factorial(r)*factorial(n-r))
+    return factorial(n)//(factorial(r)*factorial(n-r))
 
 def nPr(n,r):
-    return factorial(n)/factorial(n-r)
+    return factorial(n)//factorial(n-r)
 
-def divisor_set(x):
+def divisor_list(x):
     st = []
     for y in range(1,x):
         if x%y == 0:
             if y in st:
                 break;
             st.append(y)
-            st.append(x/y)
+            st.append(x//y)
     return sorted(st)
 
 def string_value(x):
@@ -46,7 +46,7 @@ def string_value(x):
         mx += dicti[i]
     return mx
 
-def collatz_depth(x):
+def collatz_cycles(x):
     if x==1:
         return 0
     else:
