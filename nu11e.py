@@ -29,7 +29,7 @@ def nPr(n,r):
     return factorial(n)//factorial(n-r)
 
 def nelattice_path(n,e):
-	return nCr(n+e, e)
+    return nCr(n+e, e)
 	
 def divisor_list(x):
     st = []
@@ -58,7 +58,6 @@ def collatz_cycles(x):
         else:
             return 1 + colllength(3*x +1)
 
-            
 def primes_erat(lim):
     x   = [0]*2 + [1]*(lim-2)
     lst = []
