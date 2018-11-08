@@ -1,18 +1,9 @@
-A personal number theory library.
-nu11us, MIT License
+A personal number theory library used for programming competitions.
 
 
-## Current Features
-+ Factorials
-+ Logarithms
-+ Combinations
-+ Permutations
-+ Divisor List
-+ String Alphanumeric Value
-+ Collatz Conjecture Cycle Count
-+ Sieve of Eratosthenes
-+ Lattice Path Combinations
-
-## To be added
-+ Sieve of Atkin
-+ Palindrome-related stuff?
+## Current Modules
++ Arithmetic
++ Crypto
++ Graphs
++ Primes
++ Queues
