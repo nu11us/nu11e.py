@@ -52,11 +52,11 @@ class Graph:
     def weight(self, start, end):
         return [i[1] for i in self.connections[start] if i[0] == end][0]
 
-    def dfs(self, vertex):
+    def bfs(self, vertex):
         explored = [vertex]
         paths = {vertex: 0}
         n = 0
-        count = len(self.vertices) - len(self.islands) 
+        count = len(self.vertices) - len(self.islands)
 
         if vertex in self.islands:
             return False
@@ -65,7 +65,50 @@ class Graph:
             start = explored[n]
             for end in self.neighbors(start):
                 if end not in explored:
-                    path[end] = path[start] + weight(start, end)
+                    paths[end] = paths[start] + self.weight(start, end)
                     explored.append(end)
             n += 1
         return paths
+
+    def dfs(self, vertex):
+        explored = [vertex]
+        paths = {vertex: 0}
+        weight = 0
+
+        def explore(self, vertex, length=0):
+            neighbors = self.neighbors(vertex, True)
+            for i in neighbors:
+                if i[0] not in explored:
+                    save = i[0]
+                    length += self.weight(vertex, save)
+                    explored.append(save)
+                    paths[save] = length
+                    explore(self, save, length)
+
+        explore(self, vertex)
+        return paths
+
+    def dij(self, vertex):
+        explored = [vertex]
+        paths = {vertex: 0}
+        count = len(self.vertices) - len(self.islands)
+
+        lst = []
+        while len(explored) < count:
+            # neighbor scores
+            for i in self.neighbors(vertex):
+                lst.append((paths[vertex] + self.weight(vertex, i), i))
+            lst = sorted(lst)
+            # purge step
+            lst2 = []
+            record = set()
+            for i, j in enumerate(lst):
+                if j[1] in lst or j[1] in explored:
+                    record.add(i)
+            lst = [i[1] for i in enumerate(lst) if i[0] not in record]
+            paths[lst[0][1]] = lst[0][0]
+            vertex = lst[0][1]
+            del lst[0]
+            explored.append(vertex)
+        return paths
+
