@@ -1,8 +1,11 @@
+import string
+
 def string_value(x):
-    dicti = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8, 'i': 9, 'j': 10, 'k': 11, 'l': 12, 'm': 13,
-             'n': 14, 'o': 15, 'p': 16, 'q': 17, 'r': 18, 's': 19, 't': 20, 'u': 21, 'v': 22, 'w': 23, 'x': 24, 'y': 25, 'z': 26}
-    x = x.lower()
-    mx = 0
-    for i in x:
-        mx += dicti[i]
-    return mx
+    alphabet = string.ascii_lowercase
+    return sum([alphabet.index(i)+1 for i in x.lower()])
+    
+def rot_shift(text, n):
+    alphabet = string.ascii_lowercase
+    shifted_alphabet = alphabet[n:] + alphabet[:n]
+    table = str.maketrans(alphabet, shifted_alphabet)
+    return text.translate(table)

@@ -5,5 +5,4 @@ A personal library used for programming competitions.
 + Arithmetic
 + Crypto
 + Graphs
-+ Primes
 + Queues
