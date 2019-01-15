@@ -111,4 +111,3 @@ class Graph:
             del lst[0]
             explored.append(vertex)
         return paths
-
