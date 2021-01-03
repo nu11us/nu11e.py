@@ -2,7 +2,6 @@ from itertools import combinations
 from operator import mul
 from functools import reduce
 
-
 def primes_erat(lim):
     x = [0]*2 + [1]*(lim-2)
     lst = []
@@ -57,3 +56,4 @@ def factors(n):
         for j in combinations(pr, i):
             fac.add(reduce(mul, j, 1))
     return fac
+
