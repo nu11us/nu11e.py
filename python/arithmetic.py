@@ -2,17 +2,6 @@ from itertools import combinations
 from operator import mul
 from functools import reduce
 
-def primes_erat(lim):
-    x = [0]*2 + [1]*(lim-2)
-    lst = []
-    for (i, prime) in enumerate(x):
-        if prime:
-          lst.append(i)
-          for j in range(i*2, lim, i):
-            x[j] = 0
-    return lst
-
-
 def factorial(x):
     if x == 0:
         return 1
