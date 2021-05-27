@@ -77,3 +77,35 @@ def chakravala_pell(n):
                 lst.append((abs((m**2 - n) / k),m))
         m = sorted(lst)[0][1]
         a,b,k = (a*m + n*b)/abs(k), (a + b*m)/abs(k), (m**2 - n)/k
+
+def gen_pyth_triples(bound=800000):
+    dictionary = {}
+    b = int(sqrt(bound))
+    y = set()
+    z = []
+    d = {}
+    for i in range(1, b):
+        for j in range(i+1, b):
+            if (i + j) % 2 == 1:
+                if gcd(i, j) == 1:
+                    x = j + (i+j)*(i+j+1)//2
+                    y.add(x)
+                    d[x] = (i,j)
+    for d_i in d:
+        if d_i * d[d_i][0] % d[d_i][1] == 0:
+            b = int(d_i * d[d_i][0] / d[d_i][1])
+        else:
+            b = 2*d[d_i][1]*d[d_i][1] - (d[d_i][0]**2 + d[d_i][1]**2)
+        c = d[d_i][0]**2 + d[d_i][1]**2
+        a = int(sqrt(c**2 - b**2))
+        z.append((a,b,c))
+    return z
+
+def pell(d):
+    y = 1
+    while True:
+        if (math.sqrt(d*y*y + 1)) % 1 < 1e-9:
+            if int(math.sqrt(d*y*y + 1))**2 - d*y*y == 1:
+                return (math.sqrt(d*y*y + 1),y)
+        else:
+            y += 1
