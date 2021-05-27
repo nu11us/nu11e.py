@@ -1,5 +1,5 @@
 import math
-#from Decimal import *
+from Decimal import *
 
 def primes_erat(lim):
     x = [0]*2 + [1]*(lim-2)
@@ -109,3 +109,68 @@ def pell(d):
                 return (math.sqrt(d*y*y + 1),y)
         else:
             y += 1
+
+def roman_parse(s):
+    s = s.lower()
+    if len(s) == 0:
+        return 0
+    if s[0] == 'm':
+        return 1000 + roman_parse(s[1:])
+    elif s[0] == 'd':
+        return 500 + roman_parse(s[1:])
+    elif s[0] == 'c':
+        if len(s) > 1:
+            if s[1] == 'm':
+                return 900 + roman_parse(s[2:])
+            elif s[1] == 'd':
+                return 400 + roman_parse(s[2:])
+        return 100 + roman_parse(s[1:])
+    elif s[0] == 'l':
+        return 50 + roman_parse(s[1:])
+    elif s[0] == 'x':
+        if len(s) > 1:
+            if s[1] == 'c':
+                return 90 + roman_parse(s[2:])
+            elif s[1] == 'l':
+                return 40 + roman_parse(s[2:])
+        return 10 + roman_parse(s[1:])
+    elif s[0] == 'v':
+        return 5 + roman_parse(s[1:])
+    elif s[0] == 'i':
+        if len(s) > 1:
+            if s[1] == 'x':
+                return 9 + roman_parse(s[2:])
+            elif s[1] == 'v':
+                return 4 + roman_parse(s[2:])
+        return 1 + roman_parse(s[1:])
+
+def roman_optimal(n, used=''):
+    if n >= 1000:
+        return 'M' + roman_optimal(n-1000, used)
+    elif n >= 900:
+        return 'CM' + roman_optimal(n-900, used)
+    elif n >= 500 and 'D' not in used:
+        return 'D' + roman_optimal(n-500, used+'D')
+    elif n >= 400 and 'D' not in used:
+        return 'CD' + roman_optimal(n-400, used+'D')
+    elif n >= 100:
+        return 'C' + roman_optimal(n-100, used)
+    elif n >= 90:
+        return 'XC' + roman_optimal(n-90, used)
+    elif n >= 50 and 'L' not in used:
+        return 'L' + roman_optimal(n-50, used+'L')
+    elif n >= 40 and 'L' not in used:
+        return 'XL' + roman_optimal(n-40, used+'L')
+    elif n >= 10:
+        return 'X' + roman_optimal(n-10, used)
+    elif n >= 9:
+        return 'IX' + roman_optimal(n-9, used)
+    elif n >= 5 and 'V' not in used:
+        return 'V' + roman_optimal(n-5, used+'V')
+    elif n >= 4 and 'V' not in used:
+        return 'IV' + roman_optimal(n-4, used+'V')
+    elif n >= 1:
+        return 'I' + roman_optimal(n-1, used)
+    elif n == 0:
+        return ''
+
