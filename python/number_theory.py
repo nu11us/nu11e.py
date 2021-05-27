@@ -87,7 +87,7 @@ def gen_pyth_triples(bound=800000):
     for i in range(1, b):
         for j in range(i+1, b):
             if (i + j) % 2 == 1:
-                if gcd(i, j) == 1:
+                if math.gcd(i, j) == 1:
                     x = j + (i+j)*(i+j+1)//2
                     y.add(x)
                     d[x] = (i,j)
@@ -97,7 +97,7 @@ def gen_pyth_triples(bound=800000):
         else:
             b = 2*d[d_i][1]*d[d_i][1] - (d[d_i][0]**2 + d[d_i][1]**2)
         c = d[d_i][0]**2 + d[d_i][1]**2
-        a = int(sqrt(c**2 - b**2))
+        a = int(math.sqrt(c**2 - b**2))
         z.append((a,b,c))
     return z
 
